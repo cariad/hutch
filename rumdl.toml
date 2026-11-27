@@ -1,0 +1,9 @@
+[line-length]
+line-length = 0
+
+[list-continuation-indent]
+style = "aligned"
+
+[no-trailing-spaces]
+br-spaces = 0
+strict = true
