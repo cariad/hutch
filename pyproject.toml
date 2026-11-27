@@ -17,7 +17,10 @@ license-files = [
 ]
 name = "hutch"
 readme = "README.md"
-requires-python = ">=3.15"
+requires-python = ">=3.14"
+
+[project.scripts]
+hutch = "hutch.cli:main"
 
 [project.urls]
 Repository = "https://github.com/cariad/hutch"
@@ -37,4 +40,30 @@ source = "vcs"
 cache-keys = [
   { git = { commit = true, tags = true } },
   { file = "pyproject.toml" },
+]
+
+[dependency-groups]
+dev = [
+  "pytest>=9.2.0",
+  "pytest-cov>=7.1.0",
+  "ruff>=0.17.6",
+  "rumdl>=0.3.7",
+]
+
+[tool.coverage.report]
+fail_under = 80
+show_missing = true
+
+[tool.coverage.run]
+branch = true
+source = [
+  "hutch",
+]
+
+[tool.pytest.ini_options]
+addopts = [
+  "--cov",
+]
+testpaths = [
+  "tests",
 ]
