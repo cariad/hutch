@@ -1,0 +1,40 @@
+[project]
+authors = [
+  { name = "Cariad Eccleston", email = "cariad@cariad.earth" },
+]
+classifiers = [
+  "Development Status :: 1 - Planning",
+  "Programming Language :: Python :: 3",
+  "Typing :: Typed",
+]
+description = "Website hosting in bunny.net"
+dynamic = [
+  "version",
+]
+license = "MIT"
+license-files = [
+  "LICENSE",
+]
+name = "hutch"
+readme = "README.md"
+requires-python = ">=3.15"
+
+[project.urls]
+Repository = "https://github.com/cariad/hutch"
+
+[build-system]
+requires = [
+  "hatch-vcs",
+  "hatchling",
+]
+build-backend = "hatchling.build"
+
+[tool.hatch.version]
+fallback-version = "0.0.0"
+source = "vcs"
+
+[tool.uv]
+cache-keys = [
+  { git = { commit = true, tags = true } },
+  { file = "pyproject.toml" },
+]
