@@ -1,11 +1,14 @@
 from argparse import ArgumentParser
 from collections.abc import Sequence
 from importlib.metadata import version
+from logging import DEBUG, INFO, basicConfig, getLogger
 
 from hutch.handle import handle
 from hutch.request import Request
 from hutch.return_code import ReturnCode
 from hutch.verb import Verb
+
+logger = getLogger(__name__)
 
 
 def main(args: Sequence[str] | None = None) -> int:
@@ -20,6 +23,7 @@ def main(args: Sequence[str] | None = None) -> int:
     """
 
     parsed = make_parser().parse_args(args)
+    basicConfig(level=DEBUG if parsed.debug else INFO)
 
     request = Request(
         domain=parsed.domain,
@@ -52,6 +56,12 @@ def make_parser() -> ArgumentParser:
     parser.add_argument(
         "domain",
         help="website domain",
+    )
+
+    parser.add_argument(
+        "--debug",
+        action="store_true",
+        help="log debug messages",
     )
 
     parser.add_argument(
