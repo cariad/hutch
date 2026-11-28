@@ -11,7 +11,7 @@ class Client:
 
         api_key = api_key or environ.get("BUNNY_API_KEY")
 
-        if api_key is None:
+        if not api_key:
             raise NoApiKey()
 
         self.headers = {
