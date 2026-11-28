@@ -60,6 +60,21 @@ source = [
   "hutch",
 ]
 
+[tool.ruff.lint]
+extend-select = [
+  "D",    # Docstrings
+  "D213", # Multi-line docstring summaries start on the second line
+]
+ignore = [
+  "D100", # Modules don't need docstrings
+  "D104", # Packages don't need docstrings
+  "D202", # Blank line after docstring
+  "D212", # Multi-line docstrings start on the next line
+]
+
+[tool.ruff.lint.pydocstyle]
+convention = "google"
+
 [tool.pytest.ini_options]
 addopts = [
   "--cov",
