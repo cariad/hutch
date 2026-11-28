@@ -17,3 +17,20 @@ class Client:
         self.headers = {
             "AccessKey": api_key,
         }
+
+        self.host = "api.bunny.net"
+        self.protocol = "https"
+
+    def make_url(self, *path: str) -> str:
+        """
+        Make a fully-qualified URL to a bunny.net API endpoint.
+
+        Args:
+            path: Path segments, which will be joined with slashes.
+
+        Returns:
+            Fully-qualified URL to a bunny.net API endpoint.
+        """
+
+        resource = "/".join([p.strip("/") for p in path])
+        return f"{self.protocol}://{self.host}/{resource}"
