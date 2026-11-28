@@ -4,6 +4,7 @@ from importlib.metadata import version
 
 from hutch.handle import handle
 from hutch.request import Request
+from hutch.return_code import ReturnCode
 from hutch.verb import Verb
 
 
@@ -26,7 +27,7 @@ def main(args: Sequence[str] | None = None) -> int:
     )
 
     handle(request)
-    return 0
+    return ReturnCode.SUCCESS
 
 
 def make_parser() -> ArgumentParser:
