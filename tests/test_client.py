@@ -29,3 +29,38 @@ def test_missing_api_key_raises(monkeypatch: pytest.MonkeyPatch) -> None:
 
     with pytest.raises(NoApiKey):
         Client()
+
+
+@pytest.mark.parametrize(
+    ("path", "expected"),
+    [
+        (
+            (),
+            "https://api.bunny.net/",
+        ),
+        (
+            ("dnszone",),
+            "https://api.bunny.net/dnszone",
+        ),
+        (
+            ("dnszone", "123"),
+            "https://api.bunny.net/dnszone/123",
+        ),
+        (
+            ("/dnszone/", "/123/"),
+            "https://api.bunny.net/dnszone/123",
+        ),
+        (
+            ("dnszone/123", "records"),
+            "https://api.bunny.net/dnszone/123/records",
+        ),
+    ],
+)
+def test_make_url(
+    client: Client,
+    path: tuple[str, ...],
+    expected: str,
+) -> None:
+    """Test that `make_url` joins path segments into a fully-qualified URL."""
+
+    assert client.make_url(*path) == expected
